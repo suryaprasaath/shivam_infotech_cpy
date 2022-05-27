@@ -92,7 +92,23 @@ app.post('/eregis/pan',function(req,res){
             });
     //res.status(200).send({"message":"Data received"});
 })
-app.post('/eregis/password',function(req,res){
+app.post('/eregis/passport',function(req,res){
+    console.log(req.body);
+            MongoClient.connect(url1, function(err, db)
+            {
+                if(err) throw err;
+                   var dbo = db.db("test");
+                   dbo.collection("eventregis").insertOne(req.body, function(err, response)
+                   {
+                        if(err) throw err;
+                        console.log("document inserted successfully");   
+                        db.close();
+                    });
+            });
+    //res.status(200).send({"message":"Data received"});
+})
+
+app.post('/eregis/ticketbooking',function(req,res){
     console.log(req.body);
             MongoClient.connect(url1, function(err, db)
             {
